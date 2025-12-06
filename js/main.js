@@ -1,196 +1,170 @@
-// ========================================
 // Main JavaScript for Munir B. Portfolio
-// ========================================
 
-(function() {
-  'use strict';
+document.addEventListener('DOMContentLoaded', function() {
 
-  // ========================================
-  // Mobile Menu Toggle
-  // ========================================
-  const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
-  const navLinks = document.querySelector('.nav-links');
-  const nav = document.querySelector('.nav');
+    // ===================================
+    // Smooth Scroll for Navigation Links
+    // ===================================
+    const navLinks = document.querySelectorAll('a[href^="#"]');
 
-  if (mobileMenuToggle) {
-    mobileMenuToggle.addEventListener('click', function() {
-      navLinks.classList.toggle('active');
-      mobileMenuToggle.classList.toggle('active');
-    });
+    navLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            const targetId = this.getAttribute('href');
 
-    // Close mobile menu when clicking on a link
-    const navLinkItems = document.querySelectorAll('.nav-link');
-    navLinkItems.forEach(function(link) {
-      link.addEventListener('click', function() {
-        navLinks.classList.remove('active');
-        mobileMenuToggle.classList.remove('active');
-      });
-    });
+            if (targetId === '#') return;
 
-    // Close mobile menu when clicking outside
-    document.addEventListener('click', function(event) {
-      const isClickInsideNav = nav.contains(event.target);
-      if (!isClickInsideNav && navLinks.classList.contains('active')) {
-        navLinks.classList.remove('active');
-        mobileMenuToggle.classList.remove('active');
-      }
-    });
-  }
+            const targetSection = document.querySelector(targetId);
 
-  // ========================================
-  // Smooth Scroll for Anchor Links
-  // ========================================
-  const anchorLinks = document.querySelectorAll('a[href^="#"]');
+            if (targetSection) {
+                e.preventDefault();
 
-  anchorLinks.forEach(function(link) {
-    link.addEventListener('click', function(e) {
-      const href = this.getAttribute('href');
+                const navbarHeight = document.querySelector('.navbar').offsetHeight;
+                const targetPosition = targetSection.offsetTop - navbarHeight;
 
-      // Skip if it's just "#" (for Cal.com links)
-      if (href === '#') {
-        return;
-      }
-
-      e.preventDefault();
-
-      const target = document.querySelector(href);
-      if (target) {
-        const navHeight = nav.offsetHeight;
-        const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - navHeight;
-
-        window.scrollTo({
-          top: targetPosition,
-          behavior: 'smooth'
+                window.scrollTo({
+                    top: targetPosition,
+                    behavior: 'smooth'
+                });
+            }
         });
-      }
     });
-  });
 
-  // ========================================
-  // Navbar Scroll Effect
-  // ========================================
-  let lastScroll = 0;
+    // ===================================
+    // Navbar Background on Scroll
+    // ===================================
+    const navbar = document.querySelector('.navbar');
+    let lastScroll = 0;
 
-  window.addEventListener('scroll', function() {
-    const currentScroll = window.pageYOffset;
+    window.addEventListener('scroll', () => {
+        const currentScroll = window.pageYOffset;
 
-    // Hide/show navbar on scroll (optional - can be enabled)
-    // if (currentScroll > lastScroll && currentScroll > 100) {
-    //   nav.style.transform = 'translateY(-100%)';
-    // } else {
-    //   nav.style.transform = 'translateY(0)';
-    // }
+        if (currentScroll > 100) {
+            navbar.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.1)';
+        } else {
+            navbar.style.boxShadow = 'none';
+        }
 
-    lastScroll = currentScroll;
-  });
-
-  // ========================================
-  // Intersection Observer for Fade-in Animations
-  // ========================================
-  const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -50px 0px'
-  };
-
-  const observer = new IntersectionObserver(function(entries) {
-    entries.forEach(function(entry) {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('fade-in');
-        observer.unobserve(entry.target);
-      }
+        lastScroll = currentScroll;
     });
-  }, observerOptions);
 
-  // Observe elements for fade-in animation
-  const animatedElements = document.querySelectorAll('.service-card, .portfolio-item, .about-content, .about-image-container');
-  animatedElements.forEach(function(el) {
-    observer.observe(el);
-  });
+    // ===================================
+    // Intersection Observer for Fade-in Animations
+    // ===================================
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -100px 0px'
+    };
 
-  // ========================================
-  // Cal.com Integration Placeholder
-  // ========================================
-  // TODO: Add Cal.com embed or link
-  // Replace '#' in HTML with actual Cal.com booking link
-  // Example: https://cal.com/munirb/30min
+    const observer = new IntersectionObserver(function(entries) {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+            }
+        });
+    }, observerOptions);
 
-  const calLinks = document.querySelectorAll('#cal-link, #cal-cta');
-  calLinks.forEach(function(link) {
-    link.addEventListener('click', function(e) {
-      // Temporary alert - replace with actual Cal.com link
-      alert('Cal.com booking link will be added here. Please provide your Cal.com URL.');
-      e.preventDefault();
+    // Add fade-in class to elements
+    const fadeElements = document.querySelectorAll('.service-card, .portfolio-item, .stat-item, .contact-card');
+
+    fadeElements.forEach(element => {
+        element.style.opacity = '0';
+        element.style.transform = 'translateY(20px)';
+        element.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        observer.observe(element);
     });
-  });
 
-  // ========================================
-  // Email Protection (Simple obfuscation)
-  // ========================================
-  // Note: Email is already in HTML. This is an optional enhancement
-  // for additional protection against spam bots
+    // ===================================
+    // Service Card Hover Effects
+    // ===================================
+    const serviceCards = document.querySelectorAll('.service-card');
 
-  // ========================================
-  // Form Validation (if adding a contact form)
-  // ========================================
-  // Placeholder for future contact form functionality
-
-  // ========================================
-  // Performance: Lazy Loading Images
-  // ========================================
-  if ('loading' in HTMLImageElement.prototype) {
-    // Browser supports lazy loading
-    const images = document.querySelectorAll('img[loading="lazy"]');
-    images.forEach(function(img) {
-      img.src = img.dataset.src;
+    serviceCards.forEach(card => {
+        card.addEventListener('mouseenter', function() {
+            this.style.transition = 'all 0.3s ease';
+        });
     });
-  } else {
-    // Fallback for browsers that don't support lazy loading
-    const script = document.createElement('script');
-    script.src = 'https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.3.2/lazysizes.min.js';
-    document.body.appendChild(script);
-  }
 
-  // ========================================
-  // Accessibility: Focus Management
-  // ========================================
-  // Ensure keyboard navigation works properly
-  document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape') {
-      // Close mobile menu on Escape key
-      if (navLinks.classList.contains('active')) {
-        navLinks.classList.remove('active');
-        mobileMenuToggle.classList.remove('active');
-      }
+    // ===================================
+    // Portfolio Tags Interaction
+    // ===================================
+    const tags = document.querySelectorAll('.tag');
+
+    tags.forEach(tag => {
+        tag.addEventListener('click', function(e) {
+            e.preventDefault();
+            // Could add filtering functionality here in the future
+        });
+    });
+
+    // ===================================
+    // Contact Card Click Tracking
+    // ===================================
+    const contactCards = document.querySelectorAll('.contact-card');
+
+    contactCards.forEach(card => {
+        card.addEventListener('click', function() {
+            // Analytics tracking could go here
+            console.log('Contact method clicked:', this.querySelector('h3').textContent);
+        });
+    });
+
+    // ===================================
+    // Lazy Loading for Images (if needed)
+    // ===================================
+    if ('IntersectionObserver' in window) {
+        const imageObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const img = entry.target;
+                    if (img.dataset.src) {
+                        img.src = img.dataset.src;
+                        img.classList.add('loaded');
+                        observer.unobserve(img);
+                    }
+                }
+            });
+        });
+
+        const images = document.querySelectorAll('img[data-src]');
+        images.forEach(img => imageObserver.observe(img));
     }
-  });
 
-  // ========================================
-  // Analytics Tracking (Placeholder)
-  // ========================================
-  // TODO: Add Google Analytics or other tracking
-  // Example: Track button clicks, scroll depth, etc.
+    // ===================================
+    // Active Navigation Link on Scroll
+    // ===================================
+    const sections = document.querySelectorAll('section[id]');
 
-  function trackEvent(category, action, label) {
-    // Placeholder for analytics tracking
-    console.log('Event tracked:', category, action, label);
-    // Replace with actual analytics code:
-    // gtag('event', action, { 'event_category': category, 'event_label': label });
-  }
+    function highlightNavigation() {
+        const scrollPosition = window.pageYOffset;
 
-  // Track CTA button clicks
-  const ctaButtons = document.querySelectorAll('.btn-primary');
-  ctaButtons.forEach(function(button) {
-    button.addEventListener('click', function() {
-      const buttonText = this.textContent.trim();
-      trackEvent('CTA', 'click', buttonText);
-    });
-  });
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop - 100;
+            const sectionBottom = sectionTop + section.offsetHeight;
+            const sectionId = section.getAttribute('id');
+            const navLink = document.querySelector(`.nav-links a[href="#${sectionId}"]`);
 
-  // ========================================
-  // Console Message (Optional branding)
-  // ========================================
-  console.log('%c👋 Hello there!', 'font-size: 20px; font-weight: bold; color: #D97706;');
-  console.log('%cInterested in how this site was built? Let\'s talk!', 'font-size: 14px; color: #6B7280;');
-  console.log('%cContact: contact@munirb.com', 'font-size: 12px; color: #D97706;');
+            if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
+                navLinks.forEach(link => link.classList.remove('active'));
+                if (navLink) {
+                    navLink.classList.add('active');
+                }
+            }
+        });
+    }
 
-})();
+    window.addEventListener('scroll', highlightNavigation);
+
+    // ===================================
+    // Console Message
+    // ===================================
+    console.log('%c Built with care by Munir B. ', 'background: #D97706; color: white; padding: 8px 16px; font-size: 14px;');
+    console.log('%c AI-assisted development using Claude ', 'background: #1F2937; color: white; padding: 8px 16px; font-size: 12px;');
+});
+
+// ===================================
+// Prevent FOUC (Flash of Unstyled Content)
+// ===================================
+window.addEventListener('load', function() {
+    document.body.style.opacity = '1';
+});
