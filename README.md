@@ -13,12 +13,11 @@ A modern, minimalist portfolio website showcasing data science, web development,
 ### Visual Style
 - **No rounded corners** - sharp, clean edges throughout
 - **Default state**: Grayed out elements (opacity: 0.6)
-- **Hover state**: Full color with smooth transitions
+- **Hover state**: Full color with smooth transitions (0.3s ease)
 - **Orange accent**: #D97706 (used sparingly for highlights)
-- **Animated topographic background** in hero section
+- **Animated topographic background** in hero section with hover translation effect
 
-### Inspiration
-Design inspired by Anthropic/Claude aesthetics and modern SaaS sites like:
+### Design Inspiration
 - Anthropic.com
 - Linear.app
 - Vercel.com
@@ -26,12 +25,12 @@ Design inspired by Anthropic/Claude aesthetics and modern SaaS sites like:
 
 ## 🚀 Features
 
-- **Fixed Navigation**: With backdrop blur and smooth scroll
-- **Hero Section**: Animated topographic SVG background with rotating badge
-- **Services Grid**: 2x2 layout with wave pattern cards and hover effects
-- **Portfolio**: Alternating layout with project showcases
-- **About Section**: Dark theme with statistics grid
-- **Contact**: Direct email and Cal.com consultation booking
+- **Fixed Navigation**: Backdrop blur and smooth scroll
+- **Hero Section**: Animated topographic SVG background + rotating circular badge
+- **Services Grid**: 2x2 layout with alternating light/dark wave pattern cards
+- **Portfolio**: Alternating left/right layout showcasing 3 projects
+- **About Section**: Dark theme with topographic waves and statistics grid
+- **Contact**: Email and Cal.com consultation cards
 - **Footer**: Social links with hover animations
 
 ## 📁 Project Structure
@@ -40,9 +39,9 @@ Design inspired by Anthropic/Claude aesthetics and modern SaaS sites like:
 /
 ├── index.html          # Main single-page site
 ├── css/
-│   └── styles.css      # Main stylesheet with Poppins typography
+│   └── styles.css      # Poppins typography, no rounded corners
 ├── js/
-│   └── main.js         # JavaScript for interactions
+│   └── main.js         # Smooth scroll and animations
 ├── images/
 │   ├── portfolio/      # Portfolio screenshots
 │   └── icons/          # Service icons
@@ -55,34 +54,27 @@ Design inspired by Anthropic/Claude aesthetics and modern SaaS sites like:
 ## 🛠 Technology Stack
 
 - **HTML5**: Semantic markup
-- **CSS3**: Custom properties, Grid, Flexbox
-- **JavaScript**: Vanilla JS for interactions
-- **Google Fonts**: Poppins typeface
-- **GitHub Pages**: Hosting platform
+- **CSS3**: Custom properties, Grid, Flexbox, NO rounded corners
+- **Vanilla JavaScript**: Smooth scrolling and intersection observers
+- **Poppins Font**: Via Google Fonts
+- **GitHub Pages**: Hosting
 
 ## 📋 Sections
 
-1. **Navigation** - Fixed header with smooth scroll
-2. **Hero** - Animated topographic background with value proposition
-3. **Services** - 4 core offerings with wave pattern cards
-4. **Portfolio** - 3 featured projects with case studies
-5. **About** - Background and statistics
-6. **Contact** - Email and Cal.com booking
-7. **Footer** - Social links and site navigation
+1. **Navigation** - Fixed header with smooth scroll, gray-to-dark hover states
+2. **Hero** - Animated topographic background that translates on hover, rotating badge
+3. **Services** - 4 core offerings in 2x2 grid with wave patterns
+4. **Portfolio** - 3 featured projects (Bodyblooms, Prizpot, Healthcare App)
+5. **About** - Dark section with stats (10+ years, 50+ projects, 15+ technologies)
+6. **Contact** - Email and Cal.com booking links
+7. **Footer** - Three-column layout with social links
 
 ## 🎯 Services Offered
 
-- **Data Analysis & Visualization** - Tableau dashboards and advanced analytics
-- **Web Development** - Modern sites with Claude, Webflow, and Framer
-- **Dashboard Creation** - Custom Tableau visualizations
-- **Digital Strategy Consulting** - Process optimization and productivity
-
-## 📱 Responsive Design
-
-- Desktop-first approach
-- Breakpoints at 968px and 640px
-- Mobile-optimized typography and layouts
-- Touch-friendly interactions
+1. **Data Analysis & Visualization** - Tableau dashboards and advanced analytics
+2. **Web Development** - Modern sites with Claude, Webflow, and Framer
+3. **Dashboard Creation** - Custom Tableau visualizations
+4. **Digital Strategy Consulting** - Process optimization and productivity
 
 ## 🎨 Color Palette
 
@@ -94,28 +86,62 @@ Design inspired by Anthropic/Claude aesthetics and modern SaaS sites like:
 --white: #FFFFFF;       /* Base color */
 ```
 
+## ✨ Interactive Features
+
+- Smooth scroll navigation
+- Topographic background translates on hover (10px, -10px)
+- Service cards lift with shadow on hover (translateY -4px)
+- Rotating badge animation (20s infinite)
+- Intersection observers for fade-in effects
+- Social icon hover animations
+
+## 📱 Responsive Design
+
+- Desktop-first approach
+- Breakpoints at 968px and 640px
+- Mobile-optimized typography and layouts
+- Touch-friendly interactions
+- Hidden rotating badge on mobile
+
 ## ⚡ Performance
 
-- Under 3 second load time target
-- Minimal dependencies
-- Optimized SVG graphics
-- Lazy loading for images
-- Smooth animations (0.3s transitions)
+- **Load Time Target**: Under 3 seconds
+- **No heavy dependencies**: Vanilla JS only
+- **Optimized SVGs**: For topographic backgrounds
+- **Smooth animations**: All transitions 0.3s ease
 
-## 🔧 Development
+## 🚀 Deployment to GitHub Pages
 
-This site is designed for GitHub Pages deployment:
+1. **Enable GitHub Pages**:
+   - Go to Settings → Pages
+   - Source: Deploy from branch
+   - Branch: `main` / `(root)`
+   - Save
 
-1. Clone the repository
-2. Open `index.html` in a browser
-3. No build process required
-4. Deploy directly to GitHub Pages
+2. **Site will be live at**: munirb.com
 
-## 📞 Contact
+## 📞 Contact Information
 
 - **Email**: munirmans@gmail.com
 - **LinkedIn**: [linkedin.com/in/munir-abdullahi](https://www.linkedin.com/in/munir-abdullahi/)
-- **Website**: munirb.com
+- **Location**: UAE
+- **Cal.com**: [Add your booking link]
+
+## 📝 Critical Design Requirements Met
+
+✅ **Poppins font** (NOT Inter)
+✅ **NO rounded corners** - border-radius: 0 everywhere
+✅ **Smaller font sizes** - 14-16px body, 42-58px max headings
+✅ **Gray default state** - opacity: 0.6
+✅ **Full color on hover** - opacity: 1
+✅ **Topographic background** - Animated SVG with hover effect
+✅ **Rotating badge** - 20s infinite rotation
+✅ **2x2 services grid** - Light/dark alternating
+✅ **Wave patterns** - CSS gradients for service cards
+✅ **Portfolio alternating** - Left/right layout
+✅ **Dark about section** - With subtle topographic waves
+✅ **Stats grid** - Orange numbers, white labels
+✅ **All transitions** - 0.3s ease throughout
 
 ## 📄 License
 
@@ -124,3 +150,4 @@ This site is designed for GitHub Pages deployment:
 ---
 
 **Built with Claude** - AI-assisted development using Anthropic's Claude
+**Design Style**: Sharp, professional, Anthropic/Claude-inspired aesthetic
