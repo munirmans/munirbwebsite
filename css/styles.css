@@ -59,11 +59,10 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    border-radius: 0 !important; /* NO ROUNDED CORNERS */
+    border-radius: 0 !important;
 }
 
 :root {
-    /* Colors */
     --orange: #D97706;
     --dark: #1F2937;
     --gray-dark: #374151;
@@ -87,8 +86,6 @@
     --text-3xl: 32px;
     --text-4xl: 42px;
     --text-5xl: 52px;
-
-    /* Spacing */
     --spacing-xs: 8px;
     --spacing-sm: 16px;
     --spacing-md: 24px;
@@ -96,13 +93,19 @@
     --spacing-xl: 48px;
     --spacing-2xl: 64px;
     --spacing-3xl: 96px;
-
-    /* Transitions - ALL 0.3s ease */
     --transition: 0.3s ease;
 }
 
 html {
     scroll-behavior: smooth;
+    scroll-padding-top: 80px; /* Offset for fixed navbar */
+}
+
+/* Enhanced smooth scrolling */
+@media (prefers-reduced-motion: no-preference) {
+    html {
+        scroll-behavior: smooth;
+    }
 }
 
 body {
@@ -115,15 +118,23 @@ body {
     -moz-osx-font-smoothing: grayscale;
 }
 
+/* Apply Clash Display to all headings */
+h1, h2, h3, h4, h5, h6,
+.hero-title,
+.section-title,
+.about-title,
+.portfolio-title,
+.service-title {
+    font-family: var(--font-heading);
+}
+
 .container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 var(--spacing-md);
 }
 
-/* ===================================
-   Navigation
-   =================================== */
+/* Navigation */
 .navbar {
     position: fixed;
     top: 0;
@@ -161,6 +172,7 @@ body {
 }
 
 .nav-links a {
+    position: relative;
     font-size: var(--text-sm);
     font-weight: 500;
     color: var(--gray);
@@ -172,6 +184,10 @@ body {
 .nav-links a:hover {
     color: var(--dark);
     opacity: 1;
+}
+
+.nav-links a:hover::after {
+    width: 100%;
 }
 
 .nav-cta {
@@ -189,18 +205,16 @@ body {
     transform: translateY(-2px);
 }
 
-/* ===================================
-   Hero Section with Topographic Background
-   =================================== */
+/* Hero Section */
 .hero {
     position: relative;
-    min-height: 90vh;
+    height: 100vh;
     display: flex;
     align-items: center;
     padding: var(--spacing-3xl) 0;
     background: var(--gray-bg);
     overflow: hidden;
-    margin-top: 70px;
+    margin-top: 0;
 }
 
 .topographic-lines {
@@ -288,6 +302,16 @@ body {
     transform: translateY(-2px);
 }
 
+.btn-orange {
+    background: var(--orange);
+    color: var(--white);
+}
+
+.btn-orange:hover {
+    background: #B45309;
+    transform: translateY(-2px);
+}
+
 .btn-outline {
     border: 1px solid var(--dark);
     color: var(--dark);
@@ -312,7 +336,6 @@ body {
     transform: translateY(-2px);
 }
 
-/* Rotating Badge */
 .rotating-badge {
     width: 200px;
     height: 200px;
@@ -429,6 +452,7 @@ body {
 }
 
 .service-title {
+    font-family: var(--font-heading);
     font-size: var(--text-xl);
     font-weight: 600;
     color: var(--dark);
@@ -438,8 +462,18 @@ body {
 .service-description {
     font-size: var(--text-base);
     color: var(--gray);
-    margin-bottom: var(--spacing-md);
+    margin-bottom: var(--spacing-sm);
     line-height: 1.7;
+}
+
+.service-tools {
+    font-size: var(--text-sm);
+    color: var(--gray);
+    margin-top: var(--spacing-xs);
+}
+
+.dark-card .service-tools {
+    color: var(--gray-light);
 }
 
 .service-link {
@@ -466,11 +500,14 @@ body {
    Portfolio Section
    =================================== */
 .portfolio {
+    position: relative;
     padding: var(--spacing-3xl) 0;
     background: #F9FAFB;
 }
 
 .portfolio-item {
+    position: relative;
+    z-index: 10;
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: var(--spacing-xl);
@@ -491,17 +528,47 @@ body {
 }
 
 .portfolio-title {
+    font-family: var(--font-heading);
     font-size: var(--text-2xl);
     font-weight: 700;
-    color: var(--dark);
+    color: var(--white);
+    margin-bottom: var(--spacing-md);
+    margin-top: var(--spacing-lg);
+}
+
+.portfolio-subtitle {
+    font-size: var(--text-lg);
+    font-weight: 600;
+    color: var(--orange);
     margin-bottom: var(--spacing-sm);
+    font-style: italic;
 }
 
 .portfolio-description {
     font-size: var(--text-base);
-    color: var(--gray);
+    color: var(--gray-light);
     margin-bottom: var(--spacing-md);
     line-height: 1.7;
+}
+
+.portfolio-results {
+    margin-bottom: var(--spacing-md);
+    padding: var(--spacing-sm);
+    background: var(--gray-bg);
+}
+
+.portfolio-results p {
+    font-weight: 600;
+    margin-bottom: var(--spacing-xs);
+}
+
+.portfolio-results ul {
+    margin-left: var(--spacing-md);
+    line-height: 1.8;
+}
+
+.portfolio-results li {
+    margin-bottom: var(--spacing-xs);
 }
 
 .portfolio-tags {
@@ -509,6 +576,7 @@ body {
     flex-wrap: wrap;
     gap: var(--spacing-xs);
     margin-bottom: var(--spacing-md);
+    margin-top: var(--spacing-sm);
 }
 
 .tag {
@@ -533,7 +601,7 @@ body {
     gap: 0.5rem;
     font-size: var(--text-base);
     font-weight: 600;
-    color: var(--dark);
+    color: var(--white);
     text-decoration: none;
     transition: var(--transition);
 }
@@ -547,6 +615,7 @@ body {
     width: 100%;
     aspect-ratio: 4/3;
     overflow: hidden;
+    transition: var(--transition);
 }
 
 .portfolio-image img {
@@ -569,12 +638,12 @@ body {
 
 .divider {
     height: 1px;
-    background: var(--gray-bg);
+    background: rgba(255, 255, 255, 0.1);
     margin: var(--spacing-2xl) 0;
 }
 
 /* ===================================
-   About Section
+   About Section (Dark with Stats)
    =================================== */
 .about {
     position: relative;
@@ -587,7 +656,7 @@ body {
 /* High Visibility Topographic Wave */
 .about-wave {
     position: absolute;
-    bottom: 0;
+    top: 0;
     left: 0;
     width: 100%;
     height: 100%;
@@ -609,6 +678,7 @@ body {
 }
 
 .about-title {
+    font-family: var(--font-heading);
     font-size: var(--text-4xl);
     font-weight: 700;
     margin-bottom: var(--spacing-md);
@@ -630,27 +700,23 @@ body {
     gap: var(--spacing-sm);
 }
 
-.stats-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: var(--spacing-lg);
+.about-photo {
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+    overflow: hidden;
 }
 
-.stat-item {
-    text-align: center;
-    padding: var(--spacing-md);
+.about-photo-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    aspect-ratio: 1;
+    transition: var(--transition);
 }
 
-.stat-number {
-    font-size: var(--text-4xl);
-    font-weight: 700;
-    color: var(--orange);
-    margin-bottom: var(--spacing-xs);
-}
-
-.stat-label {
-    font-size: var(--text-sm);
-    color: var(--gray-light);
+.about-photo:hover .about-photo-img {
+    transform: scale(1.05);
 }
 
 /* ===================================
@@ -688,11 +754,11 @@ body {
     background: var(--white);
     text-decoration: none;
     transition: var(--transition);
-    opacity: 0.6;
+    opacity: 0.6; /* Gray default */
 }
 
 .contact-card:hover {
-    opacity: 1;
+    opacity: 1; /* Full color on hover */
     border-color: var(--orange);
     transform: translateY(-4px);
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
@@ -706,6 +772,7 @@ body {
 }
 
 .contact-card h3 {
+    font-family: var(--font-heading);
     font-size: var(--text-lg);
     font-weight: 600;
     color: var(--dark);
@@ -770,6 +837,7 @@ body {
 }
 
 .footer-col h4 {
+    font-family: var(--font-heading);
     font-size: var(--text-base);
     font-weight: 600;
     margin-bottom: var(--spacing-md);
@@ -819,29 +887,23 @@ body {
     .rotating-badge {
         display: none;
     }
-
     .services-grid {
         grid-template-columns: 1fr;
     }
-
     .portfolio-item,
     .portfolio-item.reverse {
         grid-template-columns: 1fr;
         direction: ltr;
     }
-
     .about-content {
         grid-template-columns: 1fr;
     }
-
     .contact-methods {
         grid-template-columns: 1fr;
     }
-
     .footer-content {
         grid-template-columns: 1fr;
     }
-
     .nav-links {
         display: none;
     }
@@ -852,24 +914,19 @@ body {
         --text-4xl: 36px;
         --text-5xl: 42px;
     }
-
     .hero {
         padding: var(--spacing-xl) 0;
     }
-
     .hero-title {
         font-size: var(--text-4xl);
     }
-
     .hero-buttons {
         flex-direction: column;
     }
-
     .btn {
         width: 100%;
         text-align: center;
     }
-
     .stats-grid {
         grid-template-columns: 1fr;
     }
@@ -888,9 +945,34 @@ html {
     color: var(--white);
 }
 
-/* Focus Styles */
 a:focus,
 button:focus {
     outline: 2px solid var(--orange);
     outline-offset: 2px;
+}
+
+/* Section transitions and animations */
+section {
+    opacity: 1;
+    transition: opacity 0.6s ease-in-out;
+}
+
+/* Fade in animation for elements */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.hero-content,
+.service-card,
+.portfolio-item,
+.about-content,
+.contact-content {
+    animation: fadeInUp 0.8s ease-out;
 }
