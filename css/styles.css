@@ -8,19 +8,14 @@
    - All transitions: 0.3s ease
    =================================== */
 
-/* CSS Reset & Variables */
-   CSS Reset & Variables
-   =================================== */
-
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    border-radius: 0 !important; /* NO ROUNDED CORNERS */
+    border-radius: 0 !important;
 }
 
 :root {
-    /* Colors */
     --orange: #D97706;
     --dark: #1F2937;
     --gray-dark: #374151;
@@ -44,8 +39,6 @@
     --text-3xl: 32px;
     --text-4xl: 42px;
     --text-5xl: 52px;
-
-    /* Spacing */
     --spacing-xs: 8px;
     --spacing-sm: 16px;
     --spacing-md: 24px;
@@ -53,13 +46,19 @@
     --spacing-xl: 48px;
     --spacing-2xl: 64px;
     --spacing-3xl: 96px;
-
-    /* Transitions - ALL 0.3s ease */
     --transition: 0.3s ease;
 }
 
 html {
     scroll-behavior: smooth;
+    scroll-padding-top: 80px; /* Offset for fixed navbar */
+}
+
+/* Enhanced smooth scrolling */
+@media (prefers-reduced-motion: no-preference) {
+    html {
+        scroll-behavior: smooth;
+    }
 }
 
 body {
@@ -72,15 +71,23 @@ body {
     -moz-osx-font-smoothing: grayscale;
 }
 
+/* Apply Clash Display to all headings */
+h1, h2, h3, h4, h5, h6,
+.hero-title,
+.section-title,
+.about-title,
+.portfolio-title,
+.service-title {
+    font-family: var(--font-heading);
+}
+
 .container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 var(--spacing-md);
 }
 
-/* ===================================
-   Navigation
-   =================================== */
+/* Navigation */
 .navbar {
     position: fixed;
     top: 0;
@@ -124,7 +131,7 @@ body {
     color: var(--gray);
     text-decoration: none;
     transition: var(--transition);
-    opacity: 0.6; /* Gray default state */
+    opacity: 0.6;
 }
 
 .nav-links a::after {
@@ -162,21 +169,18 @@ body {
     transform: translateY(-2px);
 }
 
-/* ===================================
-   Hero Section with Topographic Background
-   =================================== */
+/* Hero Section */
 .hero {
     position: relative;
-    min-height: 90vh;
+    height: 100vh;
     display: flex;
     align-items: center;
     padding: var(--spacing-3xl) 0;
     background: var(--gray-bg);
     overflow: hidden;
-    margin-top: 70px;
+    margin-top: 0;
 }
 
-/* Animated Topographic Lines */
 .topographic-lines {
     position: absolute;
     top: 0;
@@ -187,7 +191,7 @@ body {
 }
 
 .hero:hover .topographic-lines {
-    transform: translate(10px, -10px); /* Moves on hover */
+    transform: translate(10px, -10px);
 }
 
 .topo-svg {
@@ -297,7 +301,6 @@ body {
     transform: translateY(-2px);
 }
 
-/* Rotating Badge */
 .rotating-badge {
     width: 200px;
     height: 200px;
@@ -315,21 +318,7 @@ body {
     to { transform: rotate(360deg); }
 }
 
-/* ===================================
-   Services Section (2x2 Grid)
-   =================================== */
-    from {
-        transform: rotate(0deg);
-    }
-    to {
-        transform: rotate(360deg);
-    }
-}
-
-/* ===================================
-   Services Section
-   =================================== */
-
+/* Services Section */
 .services {
     padding: var(--spacing-3xl) 0;
 }
@@ -354,11 +343,6 @@ body {
     background: var(--white);
     overflow: hidden;
     transition: var(--transition);
-    opacity: 0.6; /* Gray default state */
-}
-
-.service-card:hover {
-    opacity: 1; /* Full color on hover */
     opacity: 0.6;
 }
 
@@ -369,7 +353,6 @@ body {
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
 }
 
-/* Wave Pattern Backgrounds */
 .service-wave {
     position: absolute;
     top: 0;
@@ -424,8 +407,18 @@ body {
 .service-description {
     font-size: var(--text-base);
     color: var(--gray);
-    margin-bottom: var(--spacing-md);
+    margin-bottom: var(--spacing-sm);
     line-height: 1.7;
+}
+
+.service-tools {
+    font-size: var(--text-sm);
+    color: var(--gray);
+    margin-top: var(--spacing-xs);
+}
+
+.dark-card .service-tools {
+    color: var(--gray-light);
 }
 
 .service-link {
@@ -445,19 +438,10 @@ body {
 
 .service-link:hover {
     color: var(--orange);
-    gap: 0.8rem; /* Arrow increases gap on hover */
-}
-
-/* ===================================
-   Portfolio Section (Alternating Layout)
-   =================================== */
     gap: 0.8rem;
 }
 
-/* ===================================
-   Portfolio Section
-   =================================== */
-
+/* Portfolio Section */
 .portfolio {
     position: relative;
     padding: var(--spacing-3xl) 0;
@@ -524,11 +508,39 @@ body {
     margin-top: var(--spacing-lg);
 }
 
+.portfolio-subtitle {
+    font-size: var(--text-lg);
+    font-weight: 600;
+    color: var(--orange);
+    margin-bottom: var(--spacing-sm);
+    font-style: italic;
+}
+
 .portfolio-description {
     font-size: var(--text-base);
     color: var(--gray-light);
     margin-bottom: var(--spacing-md);
     line-height: 1.7;
+}
+
+.portfolio-results {
+    margin-bottom: var(--spacing-md);
+    padding: var(--spacing-sm);
+    background: var(--gray-bg);
+}
+
+.portfolio-results p {
+    font-weight: 600;
+    margin-bottom: var(--spacing-xs);
+}
+
+.portfolio-results ul {
+    margin-left: var(--spacing-md);
+    line-height: 1.8;
+}
+
+.portfolio-results li {
+    margin-bottom: var(--spacing-xs);
 }
 
 .portfolio-tags {
@@ -546,13 +558,13 @@ body {
     border: 1px solid var(--gray-bg);
     color: var(--gray);
     transition: var(--transition);
-    opacity: 0.6; /* Gray default */
+    opacity: 0.6;
 }
 
 .tag:hover {
     border-color: var(--orange);
     color: var(--orange);
-    opacity: 1; /* Full color on hover */
+    opacity: 1;
 }
 
 .portfolio-link {
@@ -659,27 +671,23 @@ body {
     gap: var(--spacing-sm);
 }
 
-.stats-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: var(--spacing-lg);
+.about-photo {
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+    overflow: hidden;
 }
 
-.stat-item {
-    text-align: center;
-    padding: var(--spacing-md);
+.about-photo-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    aspect-ratio: 1;
+    transition: var(--transition);
 }
 
-.stat-number {
-    font-size: var(--text-4xl);
-    font-weight: 700;
-    color: var(--orange);
-    margin-bottom: var(--spacing-xs);
-}
-
-.stat-label {
-    font-size: var(--text-sm);
-    color: var(--gray-light);
+.about-photo:hover .about-photo-img {
+    transform: scale(1.05);
 }
 
 /* ===================================
@@ -749,10 +757,7 @@ body {
     text-align: left;
 }
 
-/* ===================================
-   Footer
-   =================================== */
-
+/* Footer */
 .footer {
     padding: var(--spacing-2xl) 0 var(--spacing-lg);
     background: var(--dark);
@@ -820,13 +825,11 @@ body {
     color: var(--gray-light);
     text-decoration: none;
     transition: var(--transition);
-    opacity: 0.6; /* Gray default */
     opacity: 0.6;
 }
 
 .footer-col ul li a:hover {
     color: var(--orange);
-    opacity: 1; /* Full color on hover */
     opacity: 1;
     text-decoration: underline;
 }
@@ -842,56 +845,31 @@ body {
     color: var(--gray-light);
 }
 
-/* ===================================
-   Responsive Design
-   =================================== */
+/* Responsive Design */
 @media (max-width: 968px) {
     .hero-content {
         grid-template-columns: 1fr;
     }
-
-}
-
-.footer-bottom p {
-    font-size: var(--text-sm);
-    color: var(--gray-light);
-}
-
-/* ===================================
-   Responsive Design
-   =================================== */
-
-@media (max-width: 968px) {
-    .hero-content {
-        grid-template-columns: 1fr;
-    }
-
     .rotating-badge {
         display: none;
     }
-
     .services-grid {
         grid-template-columns: 1fr;
     }
-
     .portfolio-item,
     .portfolio-item.reverse {
         grid-template-columns: 1fr;
         direction: ltr;
     }
-
     .about-content {
         grid-template-columns: 1fr;
     }
-
     .contact-methods {
         grid-template-columns: 1fr;
     }
-
     .footer-content {
         grid-template-columns: 1fr;
     }
-
     .nav-links {
         display: none;
     }
@@ -902,82 +880,57 @@ body {
         --text-4xl: 36px;
         --text-5xl: 42px;
     }
-
     .hero {
         padding: var(--spacing-xl) 0;
     }
-
     .hero-title {
         font-size: var(--text-4xl);
     }
-
     .hero-buttons {
         flex-direction: column;
     }
-
     .btn {
         width: 100%;
         text-align: center;
     }
-
-    .stats-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .footer-content {
-        grid-template-columns: 1fr;
-    }
-
-    .nav-links {
-        display: none;
-    }
-}
-
-@media (max-width: 640px) {
-    :root {
-        --text-4xl: 36px;
-        --text-5xl: 42px;
-    }
-
-    .hero {
-        padding: var(--spacing-xl) 0;
-    }
-
-    .hero-title {
-        font-size: var(--text-4xl);
-    }
-
-    .hero-buttons {
-        flex-direction: column;
-    }
-
-    .btn {
-        width: 100%;
-        text-align: center;
-    }
-
     .stats-grid {
         grid-template-columns: 1fr;
     }
 }
 
-/* ===================================
-   Smooth Scrolling
-   =================================== */
-
-html {
-    scroll-behavior: smooth;
-}
-
-/* Selection */
 ::selection {
     background: var(--orange);
     color: var(--white);
 }
 
-/* Focus Styles */
 a:focus,
 button:focus {
     outline: 2px solid var(--orange);
     outline-offset: 2px;
+}
+
+/* Section transitions and animations */
+section {
+    opacity: 1;
+    transition: opacity 0.6s ease-in-out;
+}
+
+/* Fade in animation for elements */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.hero-content,
+.service-card,
+.portfolio-item,
+.about-content,
+.contact-content {
+    animation: fadeInUp 0.8s ease-out;
 }
