@@ -28,7 +28,6 @@
 }
 
 :root {
-    /* Colors */
     --orange: #D97706;
     --orange-light: #F59E0B;
     --orange-dark: #B45309;
@@ -97,9 +96,7 @@ h1, h2, h3, h4, h5, h6 {
     padding: 0 var(--spacing-md);
 }
 
-/* ===================================
-   Navigation
-   =================================== */
+/* Navigation */
 .navbar {
     position: fixed;
     top: 0;
@@ -140,6 +137,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .nav-links a {
+    position: relative;
     font-size: var(--text-sm);
     font-weight: 500;
     color: var(--gray);
@@ -161,6 +159,10 @@ h1, h2, h3, h4, h5, h6 {
 
 .nav-links a:hover {
     color: var(--dark);
+}
+
+.nav-links a:hover::after {
+    width: 100%;
 }
 
 .nav-links a:hover::after {
@@ -194,7 +196,7 @@ h1, h2, h3, h4, h5, h6 {
     padding: var(--spacing-2xl) 0 var(--spacing-xl);
     background: var(--gray-bg);
     overflow: hidden;
-    margin-top: 70px;
+    margin-top: 0;
 }
 
 .topographic-lines {
@@ -310,6 +312,16 @@ h1, h2, h3, h4, h5, h6 {
     background: var(--orange);
     transform: translateY(-3px);
     box-shadow: 0 10px 25px rgba(217, 119, 6, 0.3);
+}
+
+.btn-orange {
+    background: var(--orange);
+    color: var(--white);
+}
+
+.btn-orange:hover {
+    background: #B45309;
+    transform: translateY(-2px);
 }
 
 .btn-outline {
@@ -501,6 +513,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .service-title {
+    font-family: var(--font-heading);
     font-size: var(--text-xl);
     font-weight: 600;
     color: var(--dark);
@@ -510,7 +523,7 @@ h1, h2, h3, h4, h5, h6 {
 .service-description {
     font-size: var(--text-base);
     color: var(--gray);
-    margin-bottom: var(--spacing-md);
+    margin-bottom: var(--spacing-sm);
     line-height: 1.7;
 }
 
@@ -621,6 +634,17 @@ h1, h2, h3, h4, h5, h6 {
     font-size: var(--text-base);
     color: var(--gray-light);
     margin-bottom: var(--spacing-md);
+    padding: var(--spacing-sm);
+    background: var(--gray-bg);
+}
+
+.portfolio-results p {
+    font-weight: 600;
+    margin-bottom: var(--spacing-xs);
+}
+
+.portfolio-results ul {
+    margin-left: var(--spacing-md);
     line-height: 1.8;
 }
 
@@ -629,6 +653,7 @@ h1, h2, h3, h4, h5, h6 {
     flex-wrap: wrap;
     gap: var(--spacing-xs);
     margin-bottom: var(--spacing-md);
+    margin-top: var(--spacing-sm);
 }
 
 .work-link {
@@ -837,7 +862,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* ===================================
-   About Section
+   About Section (Dark with Stats)
    =================================== */
 .about {
     position: relative;
@@ -849,7 +874,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .about-wave {
     position: absolute;
-    bottom: 0;
+    top: 0;
     left: 0;
     width: 100%;
     height: 60%;
@@ -876,6 +901,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .about-title {
+    font-family: var(--font-heading);
     font-size: var(--text-4xl);
     font-weight: 700;
     margin-bottom: var(--spacing-md);
@@ -937,9 +963,8 @@ h1, h2, h3, h4, h5, h6 {
     color: var(--orange-light);
 }
 
-.stat-label {
-    font-size: var(--text-sm);
-    color: var(--gray-light);
+.about-photo:hover .about-photo-img {
+    transform: scale(1.05);
 }
 
 /* ===================================
@@ -1018,6 +1043,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .contact-card h3 {
+    font-family: var(--font-heading);
     font-size: var(--text-lg);
     font-weight: 600;
     color: var(--dark);
@@ -1142,7 +1168,6 @@ h1, h2, h3, h4, h5, h6 {
     .rotating-badge {
         display: none;
     }
-
     .services-grid {
         grid-template-columns: 1fr;
     }
@@ -1160,15 +1185,12 @@ h1, h2, h3, h4, h5, h6 {
     .about-content {
         grid-template-columns: 1fr;
     }
-
     .contact-methods {
         grid-template-columns: 1fr;
     }
-
     .footer-content {
         grid-template-columns: 1fr;
     }
-
     .nav-links {
         display: none;
     }
@@ -1180,7 +1202,6 @@ h1, h2, h3, h4, h5, h6 {
         --text-4xl: 32px;
         --spacing-3xl: 60px;
     }
-
     .hero {
         padding: var(--spacing-xl) 0;
     }
@@ -1189,11 +1210,9 @@ h1, h2, h3, h4, h5, h6 {
         flex-direction: column;
         width: 100%;
     }
-
     .btn {
         width: 100%;
     }
-
     .stats-grid {
         grid-template-columns: 1fr;
     }

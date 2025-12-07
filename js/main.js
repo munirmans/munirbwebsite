@@ -2,22 +2,17 @@
 
 document.addEventListener('DOMContentLoaded', function() {
 
-    // ===================================
     // Smooth Scroll for Navigation Links
-    // ===================================
     const navLinks = document.querySelectorAll('a[href^="#"]');
 
     navLinks.forEach(link => {
         link.addEventListener('click', function(e) {
             const targetId = this.getAttribute('href');
-
             if (targetId === '#') return;
 
             const targetSection = document.querySelector(targetId);
-
             if (targetSection) {
                 e.preventDefault();
-
                 const navbarHeight = document.querySelector('.navbar').offsetHeight;
                 const targetPosition = targetSection.offsetTop - navbarHeight;
 
@@ -29,27 +24,18 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // ===================================
-    // Navbar Background on Scroll
-    // ===================================
+    // Navbar Shadow on Scroll
     const navbar = document.querySelector('.navbar');
-    let lastScroll = 0;
-
     window.addEventListener('scroll', () => {
         const currentScroll = window.pageYOffset;
-
         if (currentScroll > 100) {
             navbar.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.1)';
         } else {
             navbar.style.boxShadow = 'none';
         }
-
-        lastScroll = currentScroll;
     });
 
-    // ===================================
     // Intersection Observer for Fade-in Animations
-    // ===================================
     const observerOptions = {
         threshold: 0.1,
         rootMargin: '0px 0px -100px 0px'
@@ -64,9 +50,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }, observerOptions);
 
-    // Add fade-in class to elements
     const fadeElements = document.querySelectorAll('.service-card, .portfolio-item, .stat-item, .contact-card');
-
     fadeElements.forEach(element => {
         element.style.opacity = '0';
         element.style.transform = 'translateY(20px)';
@@ -256,14 +240,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // ===================================
     // Console Message
-    // ===================================
     console.log('%c Built with care by Munir B. ', 'background: #D97706; color: white; padding: 8px 16px; font-size: 14px;');
     console.log('%c AI-assisted development using Claude ', 'background: #1F2937; color: white; padding: 8px 16px; font-size: 12px;');
-});
-
-// ===================================
-// Prevent FOUC (Flash of Unstyled Content)
-// ===================================
-window.addEventListener('load', function() {
-    document.body.style.opacity = '1';
 });
