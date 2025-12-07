@@ -29,9 +29,9 @@
     --gray-bg: #E5E7EB;
     --white: #FFFFFF;
 
-    /* Typography - Poppins ONLY */
+    /* Typography - Poppins for body, Clash Display for headings */
     --font-body: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    --font-heading: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    --font-heading: 'Clash Display', 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 
     /* Font Sizes - MUCH SMALLER */
     --text-xs: 12px;
@@ -118,6 +118,7 @@ body {
 }
 
 .nav-links a {
+    position: relative;
     font-size: var(--text-sm);
     font-weight: 500;
     color: var(--gray);
@@ -126,9 +127,24 @@ body {
     opacity: 0.6; /* Gray default state */
 }
 
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--orange);
+    transition: width 0.3s ease;
+}
+
 .nav-links a:hover {
-    color: var(--dark);
+    color: var(--orange);
     opacity: 1; /* Full color on hover */
+}
+
+.nav-links a:hover::after {
+    width: 100%;
 }
 
 .nav-cta {
@@ -189,6 +205,7 @@ body {
 }
 
 .hero-title {
+    font-family: var(--font-heading);
     font-size: var(--text-5xl); /* 52px max */
     font-weight: 700;
     line-height: 1.2;
@@ -243,6 +260,16 @@ body {
 
 .btn-primary:hover {
     background: var(--orange);
+    transform: translateY(-2px);
+}
+
+.btn-orange {
+    background: var(--orange);
+    color: var(--white);
+}
+
+.btn-orange:hover {
+    background: #B45309;
     transform: translateY(-2px);
 }
 
@@ -308,8 +335,8 @@ body {
 }
 
 .section-title {
+    font-family: var(--font-heading);
     font-size: var(--text-4xl); /* 42px max */
-    font-size: var(--text-4xl);
     font-weight: 700;
     color: var(--dark);
     margin-bottom: var(--spacing-xl);
@@ -387,6 +414,7 @@ body {
 }
 
 .service-title {
+    font-family: var(--font-heading);
     font-size: var(--text-xl);
     font-weight: 600;
     color: var(--dark);
@@ -431,11 +459,43 @@ body {
    =================================== */
 
 .portfolio {
+    position: relative;
     padding: var(--spacing-3xl) 0;
-    background: var(--white);
+    background: #111827; /* Dark background */
+    overflow: hidden;
+}
+
+.portfolio .section-title {
+    color: var(--white);
+}
+
+/* Portfolio Background Patterns */
+.portfolio::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image:
+        radial-gradient(circle at 20% 30%, rgba(217, 119, 6, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 80% 70%, rgba(217, 119, 6, 0.1) 0%, transparent 50%);
+    pointer-events: none;
+}
+
+.portfolio-pattern {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.4;
+    pointer-events: none;
 }
 
 .portfolio-item {
+    position: relative;
+    z-index: 10;
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: var(--spacing-xl);
@@ -456,15 +516,17 @@ body {
 }
 
 .portfolio-title {
+    font-family: var(--font-heading);
     font-size: var(--text-2xl);
     font-weight: 700;
-    color: var(--dark);
-    margin-bottom: var(--spacing-sm);
+    color: var(--white);
+    margin-bottom: var(--spacing-md);
+    margin-top: var(--spacing-lg);
 }
 
 .portfolio-description {
     font-size: var(--text-base);
-    color: var(--gray);
+    color: var(--gray-light);
     margin-bottom: var(--spacing-md);
     line-height: 1.7;
 }
@@ -474,6 +536,7 @@ body {
     flex-wrap: wrap;
     gap: var(--spacing-xs);
     margin-bottom: var(--spacing-md);
+    margin-top: var(--spacing-sm);
 }
 
 .tag {
@@ -498,7 +561,7 @@ body {
     gap: 0.5rem;
     font-size: var(--text-base);
     font-weight: 600;
-    color: var(--dark);
+    color: var(--white);
     text-decoration: none;
     transition: var(--transition);
 }
@@ -511,6 +574,19 @@ body {
 .portfolio-image {
     width: 100%;
     aspect-ratio: 4/3;
+    overflow: hidden;
+    transition: var(--transition);
+}
+
+.portfolio-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.portfolio-item:hover .portfolio-image img {
+    transform: scale(1.05);
 }
 
 .placeholder-image {
@@ -526,7 +602,7 @@ body {
 
 .divider {
     height: 1px;
-    background: var(--gray-bg);
+    background: rgba(255, 255, 255, 0.1);
     margin: var(--spacing-2xl) 0;
 }
 
@@ -544,11 +620,11 @@ body {
 /* Topographic Wave */
 .about-wave {
     position: absolute;
-    bottom: 0;
+    top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    opacity: 0.15;
+    opacity: 0.5;
 }
 
 .about-content {
@@ -561,6 +637,7 @@ body {
 }
 
 .about-title {
+    font-family: var(--font-heading);
     font-size: var(--text-4xl);
     font-weight: 700;
     margin-bottom: var(--spacing-md);
@@ -658,6 +735,7 @@ body {
 }
 
 .contact-card h3 {
+    font-family: var(--font-heading);
     font-size: var(--text-lg);
     font-weight: 600;
     color: var(--dark);
@@ -689,7 +767,7 @@ body {
     gap: 0.5rem;
     font-size: var(--text-base);
     font-weight: 600;
-    color: var(--dark);
+    color: var(--white);
     text-decoration: none;
     transition: var(--transition);
 }
@@ -702,6 +780,19 @@ body {
 .portfolio-image {
     width: 100%;
     aspect-ratio: 4/3;
+    overflow: hidden;
+    transition: var(--transition);
+}
+
+.portfolio-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.portfolio-item:hover .portfolio-image img {
+    transform: scale(1.05);
 }
 
 .placeholder-image {
@@ -717,7 +808,7 @@ body {
 
 .divider {
     height: 1px;
-    background: var(--gray-bg);
+    background: rgba(255, 255, 255, 0.1);
     margin: var(--spacing-2xl) 0;
 }
 
@@ -735,11 +826,11 @@ body {
 
 .about-wave {
     position: absolute;
-    bottom: 0;
+    top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    opacity: 0.15;
+    opacity: 0.5;
 }
 
 .about-content {
@@ -752,6 +843,7 @@ body {
 }
 
 .about-title {
+    font-family: var(--font-heading);
     font-size: var(--text-4xl);
     font-weight: 700;
     margin-bottom: var(--spacing-md);
@@ -850,6 +942,7 @@ body {
 }
 
 .contact-card h3 {
+    font-family: var(--font-heading);
     font-size: var(--text-lg);
     font-weight: 600;
     color: var(--dark);
@@ -915,6 +1008,7 @@ body {
 }
 
 .footer-col h4 {
+    font-family: var(--font-heading);
     font-size: var(--text-base);
     font-weight: 600;
     margin-bottom: var(--spacing-md);
