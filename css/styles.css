@@ -1,6 +1,6 @@
 /* ===================================
    CRITICAL DESIGN REQUIREMENTS
-   - Font: Poppins (14-16px body, 42-58px max headings)
+   - Font: Clash Display (14-16px body, 42-58px max headings)
    - NO rounded corners (border-radius: 0)
    - Gray default state (opacity: 0.6)
    - Full color on hover
@@ -8,6 +8,53 @@
    - All transitions: 0.3s ease
    =================================== */
 
+/* Clash Display Font Faces */
+@font-face {
+    font-family: 'Clash Display';
+    src: url('../fonts/ClashDisplay-Variable.woff2') format('woff2'),
+         url('../fonts/ClashDisplay-Variable.woff') format('woff');
+    font-weight: 200 700;
+    font-display: swap;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Clash Display';
+    src: url('../fonts/ClashDisplay-Regular.woff2') format('woff2'),
+         url('../fonts/ClashDisplay-Regular.woff') format('woff');
+    font-weight: 400;
+    font-display: swap;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Clash Display';
+    src: url('../fonts/ClashDisplay-Medium.woff2') format('woff2'),
+         url('../fonts/ClashDisplay-Medium.woff') format('woff');
+    font-weight: 500;
+    font-display: swap;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Clash Display';
+    src: url('../fonts/ClashDisplay-Semibold.woff2') format('woff2'),
+         url('../fonts/ClashDisplay-Semibold.woff') format('woff');
+    font-weight: 600;
+    font-display: swap;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Clash Display';
+    src: url('../fonts/ClashDisplay-Bold.woff2') format('woff2'),
+         url('../fonts/ClashDisplay-Bold.woff') format('woff');
+    font-weight: 700;
+    font-display: swap;
+    font-style: normal;
+}
+
+/* CSS Reset & Variables */
 * {
     margin: 0;
     padding: 0;
@@ -24,11 +71,11 @@
     --gray-bg: #E5E7EB;
     --white: #FFFFFF;
 
-    /* Typography - Poppins for body, Clash Display for headings */
-    --font-body: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    --font-heading: 'Clash Display', 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    /* Typography - Clash Display ONLY */
+    --font-body: 'Clash Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    --font-heading: 'Clash Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 
-    /* Font Sizes - MUCH SMALLER */
+    /* Font Sizes */
     --text-xs: 12px;
     --text-sm: 13px;
     --text-base: 14px;
@@ -134,20 +181,9 @@ h1, h2, h3, h4, h5, h6,
     opacity: 0.6;
 }
 
-.nav-links a::after {
-    content: '';
-    position: absolute;
-    bottom: -4px;
-    left: 0;
-    width: 0;
-    height: 2px;
-    background: var(--orange);
-    transition: width 0.3s ease;
-}
-
 .nav-links a:hover {
-    color: var(--orange);
-    opacity: 1; /* Full color on hover */
+    color: var(--dark);
+    opacity: 1;
 }
 
 .nav-links a:hover::after {
@@ -209,8 +245,7 @@ h1, h2, h3, h4, h5, h6,
 }
 
 .hero-title {
-    font-family: var(--font-heading);
-    font-size: var(--text-5xl); /* 52px max */
+    font-size: var(--text-5xl);
     font-weight: 700;
     line-height: 1.2;
     color: var(--dark);
@@ -318,14 +353,15 @@ h1, h2, h3, h4, h5, h6,
     to { transform: rotate(360deg); }
 }
 
-/* Services Section */
+/* ===================================
+   Services Section
+   =================================== */
 .services {
     padding: var(--spacing-3xl) 0;
 }
 
 .section-title {
-    font-family: var(--font-heading);
-    font-size: var(--text-4xl); /* 42px max */
+    font-size: var(--text-4xl);
     font-weight: 700;
     color: var(--dark);
     margin-bottom: var(--spacing-xl);
@@ -344,6 +380,7 @@ h1, h2, h3, h4, h5, h6,
     overflow: hidden;
     transition: var(--transition);
     opacity: 0.6;
+    min-height: 450px;
 }
 
 .service-card:hover {
@@ -353,17 +390,27 @@ h1, h2, h3, h4, h5, h6,
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
 }
 
+/* High Contrast Wave Pattern Backgrounds */
 .service-wave {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 180px;
-    background-size: cover;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
 }
 
 .light-wave {
-    background: linear-gradient(135deg, #F3F4F6 0%, #E5E7EB 50%, #D1D5DB 100%);
+    background:
+        repeating-linear-gradient(
+            45deg,
+            #E5E7EB 0px,
+            #E5E7EB 10px,
+            #D1D5DB 10px,
+            #D1D5DB 20px
+        ),
+        radial-gradient(circle at 20% 50%, rgba(217, 119, 6, 0.1) 0%, transparent 50%);
 }
 
 .dark-card {
@@ -380,7 +427,15 @@ h1, h2, h3, h4, h5, h6,
 }
 
 .dark-wave {
-    background: linear-gradient(135deg, #1F2937 0%, #111827 100%);
+    background:
+        repeating-linear-gradient(
+            -45deg,
+            #1F2937 0px,
+            #1F2937 10px,
+            #111827 10px,
+            #111827 20px
+        ),
+        radial-gradient(circle at 80% 50%, rgba(217, 119, 6, 0.15) 0%, transparent 50%);
 }
 
 .service-content {
@@ -441,40 +496,13 @@ h1, h2, h3, h4, h5, h6,
     gap: 0.8rem;
 }
 
-/* Portfolio Section */
+/* ===================================
+   Portfolio Section
+   =================================== */
 .portfolio {
     position: relative;
     padding: var(--spacing-3xl) 0;
-    background: #111827; /* Dark background */
-    overflow: hidden;
-}
-
-.portfolio .section-title {
-    color: var(--white);
-}
-
-/* Portfolio Background Patterns */
-.portfolio::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image:
-        radial-gradient(circle at 20% 30%, rgba(217, 119, 6, 0.15) 0%, transparent 50%),
-        radial-gradient(circle at 80% 70%, rgba(217, 119, 6, 0.1) 0%, transparent 50%);
-    pointer-events: none;
-}
-
-.portfolio-pattern {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    opacity: 0.4;
-    pointer-events: none;
+    background: #F9FAFB;
 }
 
 .portfolio-item {
@@ -594,11 +622,7 @@ h1, h2, h3, h4, h5, h6,
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.5s ease;
-}
-
-.portfolio-item:hover .portfolio-image img {
-    transform: scale(1.05);
+    object-position: center;
 }
 
 .placeholder-image {
@@ -629,14 +653,19 @@ h1, h2, h3, h4, h5, h6,
     overflow: hidden;
 }
 
-/* Topographic Wave */
+/* High Visibility Topographic Wave */
 .about-wave {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    opacity: 0.5;
+    opacity: 0.6;
+}
+
+.about-wave circle {
+    stroke: rgba(217, 119, 6, 0.4) !important;
+    stroke-width: 2 !important;
 }
 
 .about-content {
@@ -757,7 +786,9 @@ h1, h2, h3, h4, h5, h6,
     text-align: left;
 }
 
-/* Footer */
+/* ===================================
+   Footer
+   =================================== */
 .footer {
     padding: var(--spacing-2xl) 0 var(--spacing-lg);
     background: var(--dark);
@@ -845,11 +876,14 @@ h1, h2, h3, h4, h5, h6,
     color: var(--gray-light);
 }
 
-/* Responsive Design */
+/* ===================================
+   Responsive Design
+   =================================== */
 @media (max-width: 968px) {
     .hero-content {
         grid-template-columns: 1fr;
     }
+
     .rotating-badge {
         display: none;
     }
@@ -898,6 +932,14 @@ h1, h2, h3, h4, h5, h6,
     }
 }
 
+/* ===================================
+   Smooth Scrolling
+   =================================== */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Selection */
 ::selection {
     background: var(--orange);
     color: var(--white);
