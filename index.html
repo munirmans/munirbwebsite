@@ -83,12 +83,18 @@
                     <div class="rotating-badge">
                         <svg viewBox="0 0 200 200" class="badge-svg">
                             <defs>
-                                <path id="circlePath" d="M 100, 100 m -80, 0 a 80,80 0 1,1 160,0 a 80,80 0 1,1 -160,0"/>
+                                <path id="circlePath" d="M 100, 100 m -75, 0 a 75,75 0 1,1 150,0 a 75,75 0 1,1 -150,0"/>
                             </defs>
-                            <circle cx="100" cy="100" r="80" fill="none" stroke="#D97706" stroke-width="1.5"/>
-                            <text font-size="11" font-family="'Poppins', sans-serif" font-weight="500" fill="#1F2937" letter-spacing="2">
-                                <textPath href="#circlePath">
-                                    Check our AI-assisted development • Built with Claude • Check our AI-assisted development • Built with Claude •
+                            <!-- Outer glow circle -->
+                            <circle cx="100" cy="100" r="80" fill="none" stroke="rgba(217, 119, 6, 0.15)" stroke-width="8"/>
+                            <!-- Main bold circle -->
+                            <circle cx="100" cy="100" r="80" fill="none" stroke="#D97706" stroke-width="3"/>
+                            <!-- Inner highlight -->
+                            <circle cx="100" cy="100" r="76" fill="none" stroke="rgba(255, 255, 255, 0.3)" stroke-width="1"/>
+                            <!-- Text with background -->
+                            <text font-size="12.5" font-family="'Poppins', sans-serif" font-weight="600" fill="#1F2937" letter-spacing="1.5">
+                                <textPath href="#circlePath" startOffset="0%">
+                                    AI-ASSISTED DEVELOPMENT • BUILT WITH CLAUDE • AI-ASSISTED DEVELOPMENT • BUILT WITH CLAUDE •
                                 </textPath>
                             </text>
                         </svg>
@@ -176,91 +182,127 @@
         </div>
     </section>
 
-    <!-- Portfolio Section -->
-    <section id="portfolio" class="portfolio">
+    <!-- Selected Work Section -->
+    <section id="selected-work" class="selected-work">
         <div class="container">
             <h2 class="section-title">Selected Work</h2>
 
-            <!-- Project 1 - Hoof -->
-            <div class="portfolio-item">
-                <div class="portfolio-content">
-                    <h3 class="portfolio-title">Hoof</h3>
-                    <p class="portfolio-description">A modern digital platform revolutionizing equestrian care and management with AI-powered insights and community features.</p>
-                    <div class="portfolio-tags">
-                        <span class="tag">Web Development</span>
-                        <span class="tag">AI Integration</span>
-                        <span class="tag">Community Platform</span>
+            <!-- Project 1 - The Call -->
+            <div class="work-item">
+                <div class="work-content">
+                    <h3 class="work-title">The Call</h3>
+                    <p class="work-description">A powerful spiritual platform connecting Muslims worldwide with authentic Islamic teachings and community engagement features.</p>
+                    <div class="work-tags">
+                        <span class="tag">Islamic Platform</span>
+                        <span class="tag">Community</span>
+                        <span class="tag">Mobile App</span>
                     </div>
-                    <a href="#contact" class="portfolio-link">View project →</a>
+                    <a href="#contact" class="work-link">View project →</a>
                 </div>
-                <div class="portfolio-image">
-                    <div class="placeholder-image" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
-                        <span>HF</span>
-                    </div>
+                <div class="work-image">
+                    <img src="images/portfolio/the-call.png" alt="The Call Project">
                 </div>
             </div>
 
             <div class="divider"></div>
 
-            <!-- Project 2 - Coarse -->
-            <div class="portfolio-item reverse">
-                <div class="portfolio-content">
-                    <h3 class="portfolio-title">Coarse</h3>
-                    <p class="portfolio-description">Interactive learning platform featuring immersive course experiences and data-driven student progress tracking.</p>
-                    <div class="portfolio-tags">
-                        <span class="tag">Education Tech</span>
-                        <span class="tag">Data Analytics</span>
-                        <span class="tag">User Experience</span>
+            <!-- Project 2 - The Sunnah the Better -->
+            <div class="work-item reverse">
+                <div class="work-content">
+                    <h3 class="work-title">The Sunnah the Better</h3>
+                    <p class="work-description">Educational platform promoting authentic Prophetic traditions with modern learning tools and interactive content for spiritual growth.</p>
+                    <div class="work-tags">
+                        <span class="tag">Islamic Education</span>
+                        <span class="tag">E-Learning</span>
+                        <span class="tag">Content Platform</span>
                     </div>
-                    <a href="#contact" class="portfolio-link">View project →</a>
+                    <a href="#contact" class="work-link">View project →</a>
                 </div>
-                <div class="portfolio-image">
-                    <div class="placeholder-image" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
-                        <span>CS</span>
+                <div class="work-image">
+                    <img src="images/portfolio/the-sunnah-the-better.png" alt="The Sunnah the Better Project">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="portfolio">
+        <div class="container">
+            <h2 class="section-title">Portfolio</h2>
+
+            <!-- Initially visible projects -->
+            <div class="portfolio-grid">
+                <!-- Project 1 - Hoof -->
+                <div class="portfolio-card">
+                    <div class="portfolio-card-image">
+                        <img src="images/portfolio/hoof.png" alt="Hoof Project">
+                    </div>
+                    <div class="portfolio-card-content">
+                        <h3 class="portfolio-card-title">Hoof</h3>
+                        <p class="portfolio-card-description">Modern platform revolutionizing equestrian care with AI-powered insights and community features.</p>
+                        <div class="portfolio-card-tags">
+                            <span class="tag">Web Development</span>
+                            <span class="tag">AI Integration</span>
+                        </div>
+                        <a href="#contact" class="portfolio-card-link">View project →</a>
+                    </div>
+                </div>
+
+                <!-- Project 2 - Coarse -->
+                <div class="portfolio-card">
+                    <div class="portfolio-card-image">
+                        <img src="images/portfolio/coarse.png" alt="Coarse Project">
+                    </div>
+                    <div class="portfolio-card-content">
+                        <h3 class="portfolio-card-title">Coarse</h3>
+                        <p class="portfolio-card-description">Interactive learning platform with immersive course experiences and data-driven tracking.</p>
+                        <div class="portfolio-card-tags">
+                            <span class="tag">Education Tech</span>
+                            <span class="tag">Analytics</span>
+                        </div>
+                        <a href="#contact" class="portfolio-card-link">View project →</a>
                     </div>
                 </div>
             </div>
 
-            <div class="divider"></div>
-
-            <!-- Project 3 - Custom Made Reality -->
-            <div class="portfolio-item">
-                <div class="portfolio-content">
-                    <h3 class="portfolio-title">Custom Made Reality</h3>
-                    <p class="portfolio-description">Bespoke AR/VR solutions platform enabling businesses to create immersive brand experiences and product visualizations.</p>
-                    <div class="portfolio-tags">
-                        <span class="tag">AR/VR</span>
-                        <span class="tag">3D Visualization</span>
-                        <span class="tag">Brand Experience</span>
+            <!-- Hidden projects - shown on "View More" -->
+            <div class="portfolio-grid portfolio-hidden" id="moreProjects">
+                <!-- Project 3 - Custom Made Reality -->
+                <div class="portfolio-card">
+                    <div class="portfolio-card-image">
+                        <img src="images/portfolio/custom-made-reality.png" alt="Custom Made Reality Project">
                     </div>
-                    <a href="#contact" class="portfolio-link">View project →</a>
+                    <div class="portfolio-card-content">
+                        <h3 class="portfolio-card-title">Custom Made Reality</h3>
+                        <p class="portfolio-card-description">Bespoke AR/VR solutions for immersive brand experiences and product visualizations.</p>
+                        <div class="portfolio-card-tags">
+                            <span class="tag">AR/VR</span>
+                            <span class="tag">3D Visualization</span>
+                        </div>
+                        <a href="#contact" class="portfolio-card-link">View project →</a>
+                    </div>
                 </div>
-                <div class="portfolio-image">
-                    <div class="placeholder-image" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
-                        <span>CMR</span>
+
+                <!-- Project 4 - Alsmadi -->
+                <div class="portfolio-card">
+                    <div class="portfolio-card-image">
+                        <img src="images/portfolio/alsmadi.png" alt="Alsmadi Project">
+                    </div>
+                    <div class="portfolio-card-content">
+                        <h3 class="portfolio-card-title">Alsmadi</h3>
+                        <p class="portfolio-card-description">Premium consultancy platform connecting businesses with expert strategists for transformation.</p>
+                        <div class="portfolio-card-tags">
+                            <span class="tag">Digital Strategy</span>
+                            <span class="tag">Consulting</span>
+                        </div>
+                        <a href="#contact" class="portfolio-card-link">View project →</a>
                     </div>
                 </div>
             </div>
 
-            <div class="divider"></div>
-
-            <!-- Project 4 - Alsmadi -->
-            <div class="portfolio-item reverse">
-                <div class="portfolio-content">
-                    <h3 class="portfolio-title">Alsmadi</h3>
-                    <p class="portfolio-description">Premium digital consultancy platform connecting businesses with expert strategists for data-driven transformation.</p>
-                    <div class="portfolio-tags">
-                        <span class="tag">Digital Strategy</span>
-                        <span class="tag">Consulting Platform</span>
-                        <span class="tag">Business Intelligence</span>
-                    </div>
-                    <a href="#contact" class="portfolio-link">View project →</a>
-                </div>
-                <div class="portfolio-image">
-                    <div class="placeholder-image" style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);">
-                        <span>AS</span>
-                    </div>
-                </div>
+            <!-- View More Button -->
+            <div class="portfolio-view-more">
+                <button class="btn btn-outline" id="viewMoreBtn">View More Projects</button>
             </div>
         </div>
     </section>
@@ -337,7 +379,7 @@
                         </div>
                     </a>
 
-                    <a href="#" class="contact-card">
+                    <a href="https://cal.com/munirb/30min" target="_blank" rel="noopener noreferrer" class="contact-card">
                         <div class="contact-icon">
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                 <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>

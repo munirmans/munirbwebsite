@@ -224,6 +224,37 @@ document.addEventListener('DOMContentLoaded', function() {
     window.addEventListener('scroll', highlightNavigation);
 
     // ===================================
+    // Portfolio "View More" Button
+    // ===================================
+    const viewMoreBtn = document.getElementById('viewMoreBtn');
+    const moreProjects = document.getElementById('moreProjects');
+
+    if (viewMoreBtn && moreProjects) {
+        viewMoreBtn.addEventListener('click', function() {
+            if (moreProjects.classList.contains('portfolio-hidden')) {
+                moreProjects.classList.remove('portfolio-hidden');
+                moreProjects.classList.add('portfolio-visible');
+                viewMoreBtn.textContent = 'View Less Projects';
+            } else {
+                moreProjects.classList.remove('portfolio-visible');
+                moreProjects.classList.add('portfolio-hidden');
+                viewMoreBtn.textContent = 'View More Projects';
+
+                // Smooth scroll to portfolio section
+                const portfolioSection = document.getElementById('portfolio');
+                if (portfolioSection) {
+                    const navbarHeight = document.querySelector('.navbar').offsetHeight;
+                    const targetPosition = portfolioSection.offsetTop - navbarHeight;
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            }
+        });
+    }
+
+    // ===================================
     // Console Message
     // ===================================
     console.log('%c Built with care by Munir B. ', 'background: #D97706; color: white; padding: 8px 16px; font-size: 14px;');
